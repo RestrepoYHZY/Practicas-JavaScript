@@ -134,5 +134,7 @@ const btnDisminuir = (e) => {
 };
 
 
+//Quitar el total cuando sea cero, mira el btnDisminuir puede ayudar 
+
 
 
