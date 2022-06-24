@@ -1,12 +1,19 @@
 const carrito = document.querySelector('#carrito')
 const template = document.querySelector('#template')
+const footer = document.querySelector('#footer')
+const templateFooter = document.querySelector('#templateFooter')
 
 //Evitar el reflow
 const fragment= document.createDocumentFragment()
-//Capturar botones
-const btnesBotones = document.querySelectorAll('.card .btn')
 
-//Almacenar los productos
+document.addEventListener('click', (e) =>{
+     /*console.log(e.target.matches(".card .btn-outline-primary"));*/
+     if(e.target.matches(".card .btn-outline-primary")){
+       console.log("Agregar al carro") 
+     }
+});
+
+
 
 const carritoObjeto =[];
 
@@ -59,4 +66,4 @@ const pintarCarrito =(array)=>{
 
 };
 
-btnesBotones.forEach((btn ) => btn.addEventListener("click",agregarAlcarrito))
+
