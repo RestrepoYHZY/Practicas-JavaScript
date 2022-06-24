@@ -8,7 +8,7 @@ const btnesBotones = document.querySelectorAll('.card .btn')
 
 //Almacenar los productos
 
-const carritoObjeto ={};
+const carritoObjeto =[];
 
 const agregarAlcarrito= (e) =>{
     console.log(e.target.dataset.fruta)
@@ -18,26 +18,36 @@ const agregarAlcarrito= (e) =>{
         id: e.target.dataset.fruta,
         cantidad: 1
     }
+    
+    const indice = carritoObjeto.findIndex(
+        (item)=> item.id === producto.id
+    )
 
-    //sumar cantidad
-    if(carritoObjeto.hasOwnProperty(producto.titulo)){
-        producto.cantidad = carritoObjeto[producto.titulo].cantidad +1
-    }
+    console.log(indice)
+
+        if (indice === -1){
+            carritoObjeto.push(producto);
+        }else{
+            carritoObjeto[indice].cantidad ++;
+        }
+
+        console.log(carritoObjeto);
+
 
     //Empujo al objeto carritoObjeto
-    carritoObjeto[producto.titulo] = producto;
+   // carritoObjeto[producto.titulo] = producto;
 
-    pintarCarrito();
+    pintarCarrito(carritoObjeto);
 
-    //console.log(carritoObjeto);
+  
 
 };
 
-const pintarCarrito =()=>{
+const pintarCarrito =(array)=>{
 
     carrito.textContent = "";
    
-    Object.values(carritoObjeto).forEach(item =>{
+   array.forEach(item =>{
         const clone = template.content.firstElementChild.cloneNode(true)
         clone.querySelector('.lead').textContent=item.titulo
         clone.querySelector('.badge').textContent= item.cantidad
